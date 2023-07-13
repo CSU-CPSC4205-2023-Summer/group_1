@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>About page</title>
+        <style>
+            #header {
+                background-color: orange;
+                width: 100%;
+                height: 25vh;
+                display: flex;
+                justify-content: space-between;
+                align-items: center; /* Align vertically */
+                padding: 20px; /* Adds some padding around the header */
+            }
+            .right-section {
+                display: flex;
+                align-items: center;
+            }
+            .sign-out-button {
+                position: absolute;
+                top: 0;
+                margin-top: 20px;
+                right: 33vw;
+                background-color: #ccbbaa;
+                border: none;
+                color: black;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                transition-duration: 0.4s; /* Transition effect */
+                cursor: pointer;
+                height: 60px;
+            }
+            .sign-out-button:hover {
+                background-color: white; 
+                color: black; /* text color */
+            }
+            .logo-image {
+                height: 10vw;
+                width: 10vw; 
+                margin-right: 5vw;
+            }
+            #description{
+                background-color: maroon;
+                align-items: center;
+                color: white;
+                text-align: center;
+                font-size: 30px;
+                width: 100%;
+                height: 20vh;
+            }
+            #bottom-image {
+                position: fixed;
+                bottom: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 45vh;
+                /* background-color: blue; */
+            }
+
+            #bottom-image img {
+                max-width: 100%;
+                max-height: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="header">
+            <h1>About Poochi's Pet Resort</h1>
+            <div class="right-section">
+             <img class="logo-image" src="static/paw-with-heart.webp" alt="Logo" />
+            </div>
+        </div>
+        <div id="description">
+            <p>
+                This website allows guests at Poochi's Pet Resort to register thier pets, schedule and view thier appointments, 
+                and find info on our wonderful employees.
+            </p>
+        </div>
+        <div id="bottom-image">
+            <img src="static/about-dogs.jpg" alt="About Dogs"></img>
+        </div>
+    </body>
+</html>
