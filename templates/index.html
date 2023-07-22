@@ -81,10 +81,7 @@
                     <button type="submit" id="Schedule Appointment" class="btn btn-primary">Submit</button>
                 </div>
             </form>
-            <div class="signin-link mb-3 px-5">
-                <p>Already have an account? <a href="/signin">Sign in</a></p>
-            </div>
-        </div>
+         </div>
     </div>
     <div class="container-fluid p-2 bg-light text-center">
         <p>Poochi's Pet Resort 2023</p>
@@ -94,27 +91,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
-                
-    
-    <div class="container">
-        <div class="image-container">
-            <img src="static/pets.jpg" alt="Pets">
-        </div>
-        <form action="/schedule" method="POST">
-            <label for="pet_name">Pet Name:</label>
-            <input type="text" id="pet_name" name="pet_name" required><br>
-
-            <label for="appointment_date">Appointment Date:</label>
-            <input type="date" id="appointment_date" name="appointment_date" required><br>
-
-            <label for="appointment_time">Appointment Time:</label>
-            <input type="time" id="appointment_time" name="appointment_time" required><br>
-
-            <input type="submit" value="Schedule Appointment">
-        </form>
-        <div class="signin-link">
-            <p>Already have an account? <a href="/signin">Sign in</a></p>
-        </div>
-    </div>
 </body>
 </html>
