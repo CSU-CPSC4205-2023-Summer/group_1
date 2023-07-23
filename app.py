@@ -1,30 +1,31 @@
 from flask import Flask, render_template, request, redirect
 import datetime
+import pytz
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 
-app = Flask(__name__, static_url_path='/static')
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'your_secret_key_here'
 
-# Load Google Calendar API credentials for the service account
+# Load Google Calendar API credentials
 credentials = service_account.Credentials.from_service_account_file(
     'credentials.json',
     scopes=['https://www.googleapis.com/auth/calendar']
 )
 service = build('calendar', 'v3', credentials=credentials)
 
-# Set up the calendar ID for appointments (Replace with the shared calendar ID)
+# Set up the calendar ID for appointments
 calendar_id = 'petgroomingapptsystem@gmail.com'
 
+central_timezone = pytz.timezone('America/Chicago')
 
 @app.route('/')
 def home():
     return render_template('about.html')
 
-
 @app.route('/index')
 def index():
     return render_template('index.html')
-
 
 @app.route('/schedule', methods=['POST'])
 def schedule_appointment():
@@ -36,36 +37,31 @@ def schedule_appointment():
     appointment_date = request.form.get('appointment_date')
     appointment_time = request.form.get('appointment_time')
 
-    # Extract the hour and minute from the selected time
-    hour, minute = map(int, appointment_time.split(':'))
-
-    # Create start and end datetime objects with Central US timezone
-    start_datetime = datetime.datetime.strptime(appointment_date, '%Y-%m-%d').replace(hour=hour, minute=minute)
+    start_datetime = datetime.datetime.strptime(appointment_date + ' ' + appointment_time, '%Y-%m-%d %H:%M')
     end_datetime = start_datetime + datetime.timedelta(hours=1)
 
-    # Create event for appointment
+    start_datetime_central = central_timezone.localize(start_datetime)
+    end_datetime_central = central_timezone.localize(end_datetime)
+
     event = {
         'summary': f'Pet Grooming: {pet_name}',
-        'description': f'Owner: {first_name} {last_name}\nEmail: {email}\nPhone: {phone}',
+        'description': f'Customer Name: {first_name} {last_name}\nEmail: {email}\nPhone: {phone}',
         'start': {
-            'dateTime': start_datetime.isoformat(),
-            'timeZone': 'America/Chicago'
+            'dateTime': start_datetime_central.isoformat(),
+            'timeZone': 'America/Chicago',
         },
         'end': {
-            'dateTime': end_datetime.isoformat(),
-            'timeZone': 'America/Chicago'
+            'dateTime': end_datetime_central.isoformat(),
+            'timeZone': 'America/Chicago',
         },
     }
 
-    # Insert the event to the shared calendar using the service account credentials
     created_event = service.events().insert(calendarId=calendar_id, body=event).execute()
 
-    return redirect('/success')
+    # Pass appointment details to the success.html template
+    appointment_time_display = start_datetime_central.strftime('%I:%M %p')
 
-
-@app.route('/success')
-def success():
-    return render_template('success.html')
+    return render_template('success.html', pet_name=pet_name, appointment_date=appointment_date, appointment_time=appointment_time_display)
 
 
 if __name__ == '__main__':
