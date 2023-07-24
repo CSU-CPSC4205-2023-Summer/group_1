@@ -19,7 +19,8 @@ To run the Pet Grooming Appointment System on your local machine, follow the ins
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/CSU-CPSC4205-2023-Summer/group_1
+   git clone https://github.com/CSU-CPSC4205-2023-Summer/group_1 or
+   gitpod.io/#https://github.com/CSU-CPSC4205-2023-Summer/group_1
 
 2. Install the required Python packages:
 
@@ -39,10 +40,11 @@ Usage:
 
 Run the Flask app:
 
-'''bash
+```bash
 flask run
 
 Open your web browser and navigate to http://localhost:5000/ to access the home page.
+If using gitpod.io a popup will open with the option to open a new window in the browser.
 
 On the home page, click on 'Schedule' on navigation bar. This will take you to the index.html page. You can enter your personal information and schedule a grooming appointment for your pet.
 
